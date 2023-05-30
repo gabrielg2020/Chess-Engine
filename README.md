@@ -13,12 +13,14 @@ The goal is to create a efficient chess engine that can play against a human pla
 
 This project is still a work in progress. I'm currently working on the following features:
 
-- [x] Have the background be generate and displayed.
-- [x] Have the pieces be generated using FEN notation.
-- [x] Have pieces displayed.
+- [ ] Implement drag and drop.
+- [ ] Generate pseudo legal moves for each piece.
+- [ ] Move validation.
 
 ## Contact
 
-My twitter is **[@gabrielg3333]("https://www.twitter.com/gabrielg3333")**. Feel free to reach out to me if you have any questions or concerns.
+My twitter is **[@gabrielg3333](https://www.twitter.com/gabrielg3333)**. Feel free to reach out to me if you have any questions or concerns.
 
 ## Preview
+
+![basic bard](https://imgur.com/a/RYnOm9O)
