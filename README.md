@@ -13,7 +13,7 @@ The goal is to create a efficient chess engine that can play against a human pla
 
 This project is still a work in progress. I'm currently working on the following features:
 
-- [ ] Have the background be generate and displayed.
+- [x] Have the background be generate and displayed.
 - [ ] Have the pieces be generated using FEN notation.
 - [ ] Have pieces displayed.
 
