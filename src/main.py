@@ -14,12 +14,13 @@ class Main:
 
         self.game = Game()
 
-
     def run(self):
+        game = self.game
+        screen = self.screen
         # Game Loop
         while True:
-            self.game.renderBackground(self.screen)
-
+            game.renderBackground(screen)
+            game.renderPieces(screen)
             for event in py.event.get():
                 if event.type == py.QUIT: # Quit the game
                     py.quit()
