@@ -9,15 +9,17 @@ class Game:
         self.board = Board()
 
     def renderBackground(self, screen):
+        # Get the colours from the board theme
+        colours = BOARD_THEMES[BOARD_THEME]
         for row in range(ROWS):
             for col in range(COLS):
-                colour = COLOURS["CREAM"] if (row + col) % 2 == 0 else COLOURS["GREEN"]
+                colour = colours[1] if (row + col) % 2 == 0 else colours[0]
                 rect = py.Rect(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE)
                 py.draw.rect(screen, colour, rect)
-                py.draw.rect(screen, (0,0,0), rect, 1)
+                py.draw.rect(screen, colours[2], rect, 1)
 
                 # Draw the letters and numbers
-                textColour = COLOURS["GREEN"] if colour == COLOURS["CREAM"] else COLOURS["CREAM"]
+                textColour = colours[0] if colour == colours[1] else colours[1]
                 font = py.font.SysFont("Consolas", 20)
 
                 # Numbers

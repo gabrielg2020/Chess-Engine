@@ -10,9 +10,14 @@ SQUARE_SIZE = 100
 WIDTH = COLS * SQUARE_SIZE
 HEIGHT = ROWS * SQUARE_SIZE
 
-# Colours for the board
-COLOURS = {"GREEN": (122,150, 87), 
-            "CREAM": (238,238,210),
+# Board Theme Chosen # NOTE: This is not implemented yet naturally
+BOARD_THEME = "CHECKERS"
+# Board Themes for the board # STRUCTURE: (Colour 1, Colour 2, Outline Colour)
+BOARD_THEMES = {"ORIGINAL": ((122,150, 87),(238,238,210), (0,0,0)),
+                "BLUE": ((81,116,153),(234,233,210),(0,0,0)),
+                "BROWN": ((176,134,100),(237,216,181),(0,0,0)),
+                "BUBBLEGUM": ((248,215,221),(255,255,255),(0,0,0)),
+                "CHECKERS": ((48,48,48),(190,72,82),(236,214,135)),
 }
 
 # FEN and FEN Mapping
