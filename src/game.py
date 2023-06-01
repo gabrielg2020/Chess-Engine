@@ -2,21 +2,25 @@ import pygame as py
 
 from constants import *
 from board import Board
+from drag_handler import DragHandler
 
 class Game:
 
     def __init__(self):
         self.board = Board()
+        self.dragHandler = DragHandler()
+        self.boardSurface = py.Surface((WIDTH, HEIGHT))
+        self._createBackground(self.boardSurface)
 
-    def renderBackground(self, screen):
+    def _createBackground(self, surface):
         # Get the colours from the board theme
         colours = BOARD_THEMES[BOARD_THEME]
         for row in range(ROWS):
             for col in range(COLS):
                 colour = colours[1] if (row + col) % 2 == 0 else colours[0]
                 rect = py.Rect(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE)
-                py.draw.rect(screen, colour, rect)
-                py.draw.rect(screen, colours[2], rect, 1)
+                py.draw.rect(surface, colour, rect)
+                py.draw.rect(surface, colours[2], rect, 1)
 
                 # Draw the letters and numbers
                 textColour = colours[0] if colour == colours[1] else colours[1]
@@ -25,27 +29,32 @@ class Game:
                 # Numbers
                 if col == 0:
                     number = font.render(str(8- row), True, textColour)
-                    screen.blit(number, (col * SQUARE_SIZE + 5, row * SQUARE_SIZE + 5))
+                    surface.blit(number, (col * SQUARE_SIZE + 5, row * SQUARE_SIZE + 5))
 
                 # Letters
                 if row == 7:
                     letter = font.render(chr(col + 97), True, textColour)
-                    screen.blit(letter, (col * SQUARE_SIZE + 80, row * SQUARE_SIZE + 80))
+                    surface.blit(letter, (col * SQUARE_SIZE + 80, row * SQUARE_SIZE + 80))
 
-
+    def renderBackground(self, screen):
+        screen.blit(self.boardSurface, (0, 0))
 
     def renderPieces(self, screen):
         for row in range(ROWS):
             for col in range(COLS):
                 square = self.board.board[row][col]
+                # Does the square have a piece?
                 if square.hasPiece():
                     piece = square.piece
-                    # Get the image, center and rect
-                    image = py.image.load(piece.image)
-                    imageCenter = (col * SQUARE_SIZE + SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2)
-                    pieceRect = image.get_rect(center=imageCenter)
-                    # Draw the image
-                    screen.blit(image, pieceRect)
+
+                    # Are we not dragging the piece?
+                    if piece is not self.dragHandler.piece: # Will removes the piece form board whilst dragging
+                        # Get the image, center and rect
+                        image = py.image.load(piece.image)
+                        imageCenter = (col * SQUARE_SIZE + SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2)
+                        pieceRect = image.get_rect(center=imageCenter)
+                        # Draw the image
+                        screen.blit(image, pieceRect)
                     
                 
         

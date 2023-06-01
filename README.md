@@ -22,6 +22,7 @@ This project is still a work in progress. I'm currently working on the following
 My twitter is **[@gabrielg3333](https://www.twitter.com/gabrielg3333)**. Feel free to reach out to me if you have any questions or concerns.
 
 ## Preview
+
 <p align="center">
   <img src="https://imgur.com/K9q76Pr.png" alt="Alt Text">
 </p>
