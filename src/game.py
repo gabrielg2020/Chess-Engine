@@ -61,7 +61,7 @@ class Game:
         for square in highlightedSquares:
             row, col = square
             surface = py.Surface((SQUARE_SIZE, SQUARE_SIZE), py.SRCALPHA)
-            # If the square has a piece, set colour to red, else green
+            # If the square has a piece, large circle else dot
             if self.board.board[row][col].hasPiece():
                 py.draw.circle(surface, (128,128,128,90), (SQUARE_SIZE // 2, SQUARE_SIZE // 2), SQUARE_SIZE // 2, 7)
             else:

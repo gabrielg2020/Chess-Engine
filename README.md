@@ -13,9 +13,9 @@ The goal is to create a efficient chess engine that can play against a human pla
 
 This project is still a work in progress. I'm currently working on the following features:
 
-- [x] Implement drag and drop.
-- [x] Generate pseudo legal moves for each piece.
-- [ ] Highlight moves.
+- [ ] Be able to move piece.
+- [ ] Be able to take piece.
+- [ ] Appropriate piece highlighting.
 
 ## Contact
 
