@@ -50,8 +50,18 @@ class Main:
                         dragHandler.updateMousePos(event.pos)
                         
                 elif event.type == py.MOUSEBUTTONUP and event.button == 1: # Mouse button released
-                    dragHandler.removePiece()
+                    # Convert the mouse position to a square position
+                    row, col = event.pos[1] // SQUARE_SIZE, event.pos[0] // SQUARE_SIZE
+                    fromSquare = board.board[dragHandler.pieceSquarePos[0]][dragHandler.pieceSquarePos[1]]
+                    toSquare = board.board[row][col]
+                    
+                    if (row,col) in board.highlightedSquares:
+                        # Move the piece
+                        board.movePiece(fromSquare, toSquare)
+                        board.highlightedSquares.clear()
 
+                    dragHandler.removePiece()
+                    
                 elif event.type == py.QUIT: # Quit the game
                     py.quit()
                     sys.exit()

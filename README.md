@@ -13,8 +13,8 @@ The goal is to create a efficient chess engine that can play against a human pla
 
 This project is still a work in progress. I'm currently working on the following features:
 
-- [ ] Be able to move piece.
-- [ ] Be able to take piece.
+- [x] Be able to move piece.
+- [x] Be able to take piece.
 - [ ] Appropriate piece highlighting.
 
 ## Contact

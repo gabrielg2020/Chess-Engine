@@ -162,10 +162,6 @@ class Board:
         # Save moves to highlighted squares
         self.highlightedSquares = moves
 
-
-    
-       
-
-
-
-
+    def movePiece (self, fromSquare, toSquare):
+        toSquare.piece = fromSquare.piece
+        fromSquare.piece = None
