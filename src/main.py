@@ -21,9 +21,10 @@ class Main:
 
         # Game Loop
         while True:
-            # Render the background and pieces
+            # Render the background, pieces and highlights
             game.renderBackground(screen)
             game.renderPieces(screen)
+            game.renderHighlights(screen)
             # Render the piece being dragged
             if dragHandler.dragging:
                 dragHandler.updateDragging(screen)

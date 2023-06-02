@@ -5,6 +5,7 @@ class Board:
 
     def __init__(self):
         self.board = [[0 for _ in range(COLS)] for _ in range(ROWS)]
+        self.highlightedSquares = []
         self._create()
         self._fenToBoard()
 
@@ -158,6 +159,8 @@ class Board:
 
         # Set the moves
         piece.setMoves(moves)
+        # Save moves to highlighted squares
+        self.highlightedSquares = moves
 
 
     
