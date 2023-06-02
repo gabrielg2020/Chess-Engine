@@ -129,7 +129,9 @@ class Board:
             _generateSlidingMoves(offsets)
 
         def _queenMoves():
-            pass
+            #Move offsets
+            offsets = [(direction, -1), (direction, 1), (-direction, -1), (-direction, 1), (direction, 0), (-direction, 0), (0, -1), (0, 1)]
+            _generateSlidingMoves(offsets)
 
         def _kingMoves():
             pass
