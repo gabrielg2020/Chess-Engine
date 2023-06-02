@@ -27,7 +27,7 @@ class Board:
                 else:
                     fenCharacter = char
                     # Determine the colour
-                    colour = "WHITE" if fenCharacter.isupper() else "BLACK"
+                    colour = "white" if fenCharacter.isupper() else "black"
                     # Create the piece
                     piece = FEN_MAPPING[fenCharacter.lower()](colour)
                     # Add the piece to the board
@@ -41,47 +41,59 @@ class Board:
     def _generateMoves(self, square): # Will take a piece and generate pseudo-legal moves
         moves = []
         piece = square.piece
-        # Get the row and column of the square the piece is on
-
+        # Get the piece's direction, row and col
+        direction = piece.direction
+        row = square.row
+        col = square.col
 
         def _pawnMoves():
             # -- 1 Move Foward and 2 Moves Forward --
             # Make sure the move is on the board
-            if square.row + piece.direction in range(ROWS):
+            if row + direction in range(ROWS):
                 # Is there not a piece in front of the pawn?
-                if not self.board[square.row + piece.direction][square.col].hasPiece():
+                if not self.board[row + direction][col].hasPiece():
                     # It can move forward
-                    moves.append((square.row + piece.direction, square.col)) # 1↑
+                    moves.append((row + direction, col)) # 1↑
 
                     # Make sure the move is on the board
-                    if square.row + piece.direction * 2 in range(ROWS):
+                    if row + direction * 2 in range(ROWS):
                         # Has the pawn moved?
                         if not piece.moved:
                             # Can it move two squares?
-                            if not self.board[square.row + piece.direction * 2][square.col].hasPiece():
-                                moves.append((square.row + piece.direction * 2, square.col)) # 2↑
+                            if not self.board[row + direction * 2][col].hasPiece():
+                                moves.append((row + direction * 2, col)) # 2↑
 
             # -- Diagonal Capture --
             # Make sure the move is on the board
-            if square.row + piece.direction in range(ROWS) and square.col - 1 in range(COLS):
+            if row + direction in range(ROWS) and col - 1 in range(COLS):
                 # Is there a piece diagonally to the left of the pawn?
-                if self.board[square.row + piece.direction][square.col - 1].hasPiece():
+                if self.board[row + direction][col - 1].hasPiece():
                     # Can it capture the piece?
-                    if self.board[square.row + piece.direction][square.col - 1].piece.colour != piece.colour:
-                        moves.append((square.row + piece.direction, square.col - 1))
+                    if self.board[row + direction][col - 1].piece.colour != piece.colour:
+                        moves.append((row + direction, col - 1))
 
             # Make sure the move is on the board
-            if square.row + piece.direction in range(ROWS) and square.col + 1 in range(COLS):
+            if row + direction in range(ROWS) and col + 1 in range(COLS):
                 # Is there a piece diagonally to the right of the pawn?
-                if self.board[square.row + piece.direction][square.col + 1].hasPiece():
+                if self.board[row + direction][col + 1].hasPiece():
                     # Can it capture the piece?
-                    if self.board[square.row + piece.direction][square.col + 1].piece.colour != piece.colour:
-                        moves.append((square.row + piece.direction, square.col + 1))
-
-
+                    if self.board[row + direction][col + 1].piece.colour != piece.colour:
+                        moves.append((row + direction, col + 1))
 
         def _knightMoves():
-            pass
+            # Move offsets
+            offsets = [(2, 1),(2, -1),(1, 2),(1, -2),(-2, 1),(-2, -1),(-1, 2),(-1, -2),]
+
+            # For each offset, check if the move is on the board
+            for offset in offsets:
+                # Make sure the move is on the board
+                if row + offset[0] in range(ROWS) and col + offset[1] in range(COLS):
+                    # Make sure there is not a piece of the same colour
+                    if not self.board[row + offset[0]][col + offset[1]].hasPiece() or self.board[row + offset[0]][col + offset[1]].piece.colour != piece.colour:
+                            moves.append((row + offset[0], col + offset[1]))
+                    
+        
+
 
         def _bishopMoves():
             pass
