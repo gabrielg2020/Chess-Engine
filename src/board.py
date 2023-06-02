@@ -71,6 +71,18 @@ class Board:
                     if not self.board[newRow][newCol].hasPiece():
                         moves.append((newRow, newCol))
 
+        def _generateDirectionalMoves(directions): # This function will only be called by: _knightMoves, _kingMoves
+            # For each direction, check if the move is on the board
+            for direction in directions:
+                # Calculate new row and col
+                newRow = row + direction[0]
+                newCol = col + direction[1]
+                # Make sure the move is on the board
+                if newRow in range(ROWS) and newCol in range(COLS):
+                    # Make sure there is not a piece of the same colour
+                    if not self.board[newRow][newCol].hasPiece() or self.board[newRow][newCol].piece.colour != piece.colour:
+                            moves.append((newRow, newCol))
+
         def _pawnMoves():
             # -- 1 Move Foward and 2 Moves Forward --
             # Make sure the move is on the board
@@ -106,17 +118,10 @@ class Board:
                         moves.append((row + direction, col + 1))
 
         def _knightMoves():
-            # Move offsets
-            offsets = [(2, 1),(2, -1),(1, 2),(1, -2),(-2, 1),(-2, -1),(-1, 2),(-1, -2),]
-
-            # For each offset, check if the move is on the board
-            for offset in offsets:
-                # Make sure the move is on the board
-                if row + offset[0] in range(ROWS) and col + offset[1] in range(COLS):
-                    # Make sure there is not a piece of the same colour
-                    if not self.board[row + offset[0]][col + offset[1]].hasPiece() or self.board[row + offset[0]][col + offset[1]].piece.colour != piece.colour:
-                            moves.append((row + offset[0], col + offset[1]))
-                    
+            # Move directions
+            directions = [(2, 1),(2, -1),(1, 2),(1, -2),(-2, 1),(-2, -1),(-1, 2),(-1, -2),]
+            _generateDirectionalMoves(directions)
+            
         def _bishopMoves():
             # Move offsets
             offsets = [(direction, -1), (direction, 1), (-direction, -1), (-direction, 1)]
@@ -134,7 +139,9 @@ class Board:
             _generateSlidingMoves(offsets)
 
         def _kingMoves():
-            pass
+            # Move directions
+            directions = [(1, 0),(-1, 0),(0, 1),(0, -1),(1, 1),(1, -1),(-1, 1),(-1, -1)]
+            _generateDirectionalMoves(directions)
 
         # Decides which function to call
         switch = {
