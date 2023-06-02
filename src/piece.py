@@ -18,6 +18,8 @@ class Piece:
         path = f"assets/images/{size}px/{self.colour}_{self.name}.png"
         self.image = os.path.join(path)
 
+    def setMoves(self, moves):
+        self.moves = moves
 
 '''
 All of the pieces below inherit from the Piece class.

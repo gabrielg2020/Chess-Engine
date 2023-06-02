@@ -39,6 +39,7 @@ class Main:
                     if board.board[row][col].hasPiece():
                         # Save the piece
                         piece = board.board[row][col].piece
+                        board.getMoves(board.board[row][col])
                         dragHandler.updatePieceSquarePos(event.pos)
                         dragHandler.updatePiece(piece)
 

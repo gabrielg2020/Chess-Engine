@@ -8,7 +8,6 @@ class DragHandler:
         self.pieceSquarePos = (0, 0)
         self.mousePos = (0, 0)
         self.piece = None
-        print(self.piece)
 
     # Render the piece being dragged
     def updateDragging(self, surface):
