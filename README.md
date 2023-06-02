@@ -15,7 +15,7 @@ This project is still a work in progress. I'm currently working on the following
 
 - [x] Be able to move piece.
 - [x] Be able to take piece.
-- [ ] Appropriate piece highlighting.
+- [x] Appropriate piece highlighting.
 
 ## Contact
 

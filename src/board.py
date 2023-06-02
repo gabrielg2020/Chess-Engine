@@ -6,6 +6,8 @@ class Board:
     def __init__(self):
         self.board = [[0 for _ in range(COLS)] for _ in range(ROWS)]
         self.highlightedSquares = []
+        self.previousMove = None
+        self.selectedSquare = None
         self._create()
         self._fenToBoard()
 
@@ -165,3 +167,6 @@ class Board:
     def movePiece (self, fromSquare, toSquare):
         toSquare.piece = fromSquare.piece
         fromSquare.piece = None
+
+        # Store move
+        self.previousMove = (fromSquare, toSquare)

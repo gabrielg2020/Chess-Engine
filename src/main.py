@@ -23,8 +23,8 @@ class Main:
         while True:
             # Render the background, pieces and highlights
             game.renderBackground(screen)
-            game.renderPieces(screen)
             game.renderHighlights(screen)
+            game.renderPieces(screen)
             # Render the piece being dragged
             if dragHandler.dragging:
                 dragHandler.updateDragging(screen)
@@ -43,6 +43,10 @@ class Main:
                         board.getMoves(board.board[row][col])
                         dragHandler.updatePieceSquarePos(event.pos)
                         dragHandler.updatePiece(piece)
+                        board.selectedSquare = board.board[row][col]
+                    else:
+                        board.highlightedSquares.clear()
+                        board.selectedSquare = None
 
                 elif event.type == py.MOUSEMOTION: # Mouse moved
                     # Are we dragging a piece?
@@ -58,9 +62,10 @@ class Main:
                     if (row,col) in board.highlightedSquares:
                         # Move the piece
                         board.movePiece(fromSquare, toSquare)
-                        board.highlightedSquares.clear()
-
+                        
                     dragHandler.removePiece()
+                    board.highlightedSquares.clear()
+                    board.selectedSquare = None
                     
                 elif event.type == py.QUIT: # Quit the game
                     py.quit()

@@ -57,17 +57,39 @@ class Game:
                         screen.blit(image, pieceRect)
 
     def renderHighlights(self, screen):
+        # Hightlight possible moves
         highlightedSquares = self.board.highlightedSquares
         for square in highlightedSquares:
             row, col = square
             surface = py.Surface((SQUARE_SIZE, SQUARE_SIZE), py.SRCALPHA)
             # If the square has a piece, large circle else dot
             if self.board.board[row][col].hasPiece():
-                py.draw.circle(surface, (128,128,128,90), (SQUARE_SIZE // 2, SQUARE_SIZE // 2), SQUARE_SIZE // 2, 7)
+                py.draw.circle(surface, HIGHLIGHT_MOVE, (SQUARE_SIZE // 2, SQUARE_SIZE // 2), SQUARE_SIZE // 2, 7)
             else:
-                py.draw.circle(surface, (128,128,128,90), (SQUARE_SIZE // 2, SQUARE_SIZE // 2), 15)
+                py.draw.circle(surface, HIGHLIGHT_MOVE, (SQUARE_SIZE // 2, SQUARE_SIZE // 2), 15)
 
             screen.blit(surface, (col * SQUARE_SIZE, row * SQUARE_SIZE))
+
+        # Highlight previous move
+        if self.board.previousMove:
+            fromSquare, toSquare = self.board.previousMove
+            fromRow = fromSquare.row
+            fromCol = fromSquare.col
+            toRow = toSquare.row
+            toCol = toSquare.col
+            surface = py.Surface((SQUARE_SIZE, SQUARE_SIZE), py.SRCALPHA)
+            py.draw.rect(surface, PREVIOUS_MOVE, (0, 0, SQUARE_SIZE, SQUARE_SIZE), 7)
+            screen.blit(surface, (fromCol * SQUARE_SIZE, fromRow * SQUARE_SIZE))
+            screen.blit(surface, (toCol * SQUARE_SIZE, toRow * SQUARE_SIZE))
+
+        # Highlight Selected square
+        if self.board.selectedSquare:
+            row = self.board.selectedSquare.row
+            col = self.board.selectedSquare.col
+            surface = py.Surface((SQUARE_SIZE, SQUARE_SIZE), py.SRCALPHA)
+            py.draw.rect(surface, SELECTED, (0, 0, SQUARE_SIZE, SQUARE_SIZE), 7)
+            screen.blit(surface, (col * SQUARE_SIZE, row * SQUARE_SIZE))
+
                     
                 
         

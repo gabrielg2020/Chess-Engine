@@ -20,6 +20,12 @@ BOARD_THEMES = {"ORIGINAL": ((122,150, 87),(238,238,210), (0,0,0)),
                 "CHECKERS": ((48,48,48),(190,72,82),(236,214,135)),
 }
 
+# Move highlight Colour
+HIGHLIGHT_MOVE = (128,128,128,90)
+# Previous Move and Selected Highlight Colour
+PREVIOUS_MOVE = (188,201,55)
+SELECTED = (246,245,117)
+
 # FEN and FEN Mapping
 FEN = "rnbqkbnr/pppppppp/8/8/8/p7/PPP1PPPP/RNBQKBNR w KQkq - 0 1"
 FEN_MAPPING = {
