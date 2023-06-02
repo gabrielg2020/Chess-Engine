@@ -13,9 +13,9 @@ The goal is to create a efficient chess engine that can play against a human pla
 
 This project is still a work in progress. I'm currently working on the following features:
 
-- [x] Be able to move piece.
-- [x] Be able to take piece.
-- [x] Appropriate piece highlighting.
+- [ ] Be able to check for check.
+- [ ] Be able to check for checkmate.
+- [ ] Filter Psudeo-legal moves.
 
 ## Contact
 
