@@ -27,7 +27,7 @@ PREVIOUS_MOVE = (188,201,55)
 SELECTED = (246,245,117)
 
 # FEN and FEN Mapping
-FEN = "rnbqkbnr/pppppppp/8/8/8/p7/PPP1PPPP/RNBQKBNR w KQkq - 0 1"
+FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 FEN_MAPPING = {
     "r": Rook,
     "n": Knight,

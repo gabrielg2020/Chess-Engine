@@ -62,6 +62,8 @@ class Main:
                     if (row,col) in board.highlightedSquares:
                         # Move the piece
                         board.movePiece(fromSquare, toSquare)
+                        # Store the previous move
+                        board.previousMove = (fromSquare, toSquare)
                         
                     dragHandler.removePiece()
                     board.highlightedSquares.clear()
